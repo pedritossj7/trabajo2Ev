@@ -6,3 +6,25 @@
 table, #dado {
     margin: 2%;
 }
+
+body {
+    height: 100vh;
+    background-image: url("https://t3.ftcdn.net/jpg/01/14/47/12/360_F_114471205_0O1mMyKE100dWY4kqoDKBNYJDto53kkt.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#tabla, #tabla td {
+    display: flex;
+}
+
+#tabla td {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+    

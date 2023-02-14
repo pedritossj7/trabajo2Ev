@@ -30,8 +30,8 @@ function crearTabla() {
             let columna = document.createElement("td");
             columna.style.border = "1px solid";
 
-            columna.style.height = "28px";
-            columna.style.width = "25px";
+            columna.style.height = "50px";
+            columna.style.width = "50px";
 
             fila.appendChild(columna);
         }
@@ -259,7 +259,7 @@ function inicio() {
 
         // Caracter
         caracter(document.getElementsByTagName("td")[0]);
-        
+
         // Botón para lanzar la primera tirada del dado y empezar la partida
         crearBotonEmpezar();
     })
