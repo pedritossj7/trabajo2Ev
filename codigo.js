@@ -244,14 +244,25 @@ function crearBotonEmpezar() {
 }
 
 function inicio() {
-    // Creamos tabla
-    crearTabla();
+    // Botón para iniciar juego
+    let botonInit = document.createElement("button");
+    botonInit.appendChild(document.createTextNode("Iniciar juego"));
+    document.body.appendChild(botonInit);
 
-    // Caracter
-    caracter(document.getElementsByTagName("td")[0]);
+    // Al dar click al botón de iniciar juego, se crea la tabla, personaje y 
+    // botón para sacar primera tirada del dado
+    botonInit.addEventListener("click", (ev) => {
+        botonInit.remove();
 
-    // Botón para lanzar la primera tirada del dado y empezar la partida
-    crearBotonEmpezar();
+        // Creamos tabla
+        crearTabla();
+
+        // Caracter
+        caracter(document.getElementsByTagName("td")[0]);
+        
+        // Botón para lanzar la primera tirada del dado y empezar la partida
+        crearBotonEmpezar();
+    })
 }
 
 window.onload = inicio;
