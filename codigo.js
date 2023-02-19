@@ -7,16 +7,13 @@
 let dadoTirado;
 
 // En esta variable establecemos el núm de tiradas que hizo el jugador durante la partida
-let numTiradas;
+let numTiradas = 0;
 
 // Array de cuadros posibles por recorrer en cada tirada del dado
 let cuadrosPosibles = [];
 
 /* Esta funcion sirve para crear la tabla del juego, en caso de iniciar el SPA o reiniciar la partida */
 function crearTabla() {
-    // Antes de crear la tabla, el núm. de tiradas se establece a 0
-    numTiradas = 0;
-
     let tabla = document.createElement("table");
     tabla.id = "tabla";
 
@@ -48,7 +45,7 @@ function posicionDado(dado, numAleatorio) {
     dadoTirado = true;
 }
 
-/* Esta función crea el dado */
+/* Esta función dibuja el dado */
 function dibujar(){
     var canvas = document.getElementById('dado1');
     if (canvas.getContext){
@@ -223,6 +220,7 @@ function dibujar(){
     }
 }
 
+/* Esta función crea el dado */
 function crearDado() {
     let contDado = document.createElement("div");
     contDado.id = "dado";
@@ -254,7 +252,7 @@ function crearDado() {
     dibujar();
 }
 
-/* En esta función, con la variable posicion, se le establece un nº aleatorio del 1 al 6
+/* En esta función, con la variable numAleatorio, se le establece un nº aleatorio del 1 al 6
    y gracias a ello, podemos saber el nº de celdas posibles que pueda recorrer */
 function funcionDado(dado) {
     var numAleatorio = Math.floor(Math.random()*6+1);
@@ -328,8 +326,7 @@ function funcionCeldasPosibles(ev, posicion) {
         if (ev.target.style.background == "green") {
             // Si la celda verde es la última celda, se termina la partida
             if (ev.target.id == "ultimaCelda") {
-                alert("FIN DE LA PARTIDA");
-    
+                alert("FIN DE LA PARTIDA \nNº de tiradas realizadas: "+(numTiradas+1));
                 let botonReiniciar = document.createElement("button");
                 botonReiniciar.appendChild(document.createTextNode("Reiniciar partida"));
                 document.body.appendChild(botonReiniciar);
@@ -346,11 +343,7 @@ function funcionCeldasPosibles(ev, posicion) {
             // Se quitan las demás celdas posibles del array, quitando además el color de fondo de los mismos
             if(cuadrosPosibles.length > 0) {
                 while (cuadrosPosibles.length > 0) {
-                    //cuadrosPosibles[cuadrosPosibles.length-1].removeAttribute("style");
                     cuadrosPosibles[cuadrosPosibles.length-1].style.background = "";
-                    /*cuadrosPosibles[cuadrosPosibles.length-1].removeEventListener("click", (ev) =>{
-                        avanzarCelda(ev);
-                    });*/
                     cuadrosPosibles.pop();
                 }
             }
@@ -363,16 +356,13 @@ function funcionCeldasPosibles(ev, posicion) {
             dadoTirado = false;
             // Se le añade 1 más al núm. de tiradas
             numTiradas++;
-
             console.log("Tiradas: "+numTiradas);
         }
     });
-
-    console.log("tienes "+cuadrosPosibles.length+" celdas para recorrer");
-    console.log("Estás en la columna "+(C+1)+" de la fila "+(F+1));
 }
 
-/* En esta funcion se crea el carácter */
+/* En esta funcion se crea el carácter, situándolo además en x celda de la tabla gracias 
+   al parámetro de celda */
 function caracter(celda) {
     var caracter = document.createElement("div");
     caracter.id = "caracter";
@@ -416,8 +406,8 @@ function crearBotonEmpezar() {
         document.body.appendChild(dado);
         funcionDado(dado);
 
-        // Al pulsar sobre el dado, se hace un evento onclick que establece una variable
-        // de posición (nº aleatorio del 1 al 6)
+        // Al pulsar sobre el dado, se hace un evento onclick que llama a la funcionDado
+        // Si el dado está tirado, entonces no dejaría tirar más hasta que mueva al carácter
         dado.addEventListener("click", (ev) => {
             if (dadoTirado) {
                 alert("El dado ya está tirado");
