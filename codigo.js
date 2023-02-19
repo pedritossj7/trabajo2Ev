@@ -9,9 +9,6 @@ let dadoTirado;
 // En esta variable establecemos el núm de tiradas que hizo el jugador durante la partida
 let numTiradas;
 
-// Array de posiciones que tiene el sprite del dado (del 1 (posición [0]) al 6 (posición [5]))
-let posiciones = [-160, -128, -96, -64, -32, 0];
-
 // Array de cuadros posibles por recorrer en cada tirada del dado
 let cuadrosPosibles = [];
 
@@ -43,26 +40,226 @@ function crearTabla() {
 }
 
 /* Esta función determina la posición del dado */
-function posicionDado(dado, posicion) {
-    dado.style.backgroundPosition = posiciones[posicion]+"px 0px";
-    console.log(posiciones[posicion]);
+function posicionDado(dado, numAleatorio) {
+    let cubo = dado.getElementsByClassName("cubo3D")[0];
+    cubo.style.animation = "gira"+numAleatorio+" 1s forwards";
 
     // Después de la tirada, la variable global de dadoTirado se vuelve true
     dadoTirado = true;
 }
 
 /* Esta función crea el dado */
+function dibujar(){
+    var canvas = document.getElementById('dado1');
+    if (canvas.getContext){
+        var ctx = canvas.getContext("2d");
+        var X = canvas.width*0.5;
+        var Y = canvas.height*0.5;
+        var r = canvas.height*0.125;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+    }
+    var canvas = document.getElementById('dado2');
+    if (canvas.getContext){
+        var ctx = canvas.getContext("2d");
+        var X = canvas.width*0.25;
+        var Y = canvas.height*0.15;
+        var r = canvas.height*0.125;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.75;
+        var Y = canvas.height*0.85;
+        var r = canvas.height/8;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+    }
+    var canvas = document.getElementById('dado3');
+    if (canvas.getContext){
+        var ctx = canvas.getContext("2d");
+        var X = canvas.width*0.25;
+        var Y = canvas.height*0.15;
+        var r = canvas.height*0.125;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.5;
+        var Y = canvas.height/2;
+        var r = canvas.height/8;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.75;
+        var Y = canvas.height*0.85;
+        var r = canvas.height/8;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+    }
+    var canvas = document.getElementById('dado4');
+    if (canvas.getContext){
+        var ctx = canvas.getContext("2d");
+        var X = canvas.width*0.25;
+        var Y = canvas.height*0.15;
+        var r = canvas.height*0.125;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.75;
+        var Y = canvas.height*0.15;
+        var r = canvas.height/8;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.25;
+        var Y = canvas.height*0.85;
+        var r = canvas.height/8;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.75;
+        var Y = canvas.height*0.85;
+        var r = canvas.height/8;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+    }
+    var canvas = document.getElementById('dado5');
+    if (canvas.getContext){
+        var ctx = canvas.getContext("2d");
+        var X = canvas.width*0.25;
+        var Y = canvas.height*0.15;
+        var r = canvas.height*0.125;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.75;
+        var Y = canvas.height*0.15;
+        var r = canvas.height/8;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.25;
+        var Y = canvas.height*0.85;
+        var r = canvas.height/8;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.75;
+        var Y = canvas.height*0.85;
+        var r = canvas.height/8;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.5;
+        var Y = canvas.height*0.5;
+        var r = canvas.height*0.125;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+    }
+    var canvas = document.getElementById('dado6');
+    if (canvas.getContext){
+        var ctx = canvas.getContext("2d");
+        var X = canvas.width*0.25;
+        var Y = canvas.height*0.15;
+        var r = canvas.height*0.125;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.75;
+        var Y = canvas.height*0.15;
+        var r = canvas.height/8;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.25;
+        var Y = canvas.height*0.85;
+        var r = canvas.height/8;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.75;
+        var Y = canvas.height*0.85;
+        var r = canvas.height/8;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.5;
+        var Y = canvas.height*0.15;
+        var r = canvas.height*0.125;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        var X = canvas.width*0.5;
+        var Y = canvas.height*0.85;
+        var r = canvas.height*0.125;
+        ctx.beginPath();
+        ctx.arc(X, Y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+    }
+}
+
 function crearDado() {
-    let dado = document.createElement("div");
-    dado.id = "dado";
+    let contDado = document.createElement("div");
+    contDado.id = "dado";
+    document.body.appendChild(contDado);
 
-    dado.style.background = "url(https://upload.wikimedia.org/wikipedia/commons/2/2e/Dice-faces_32x32.jpg) no-repeat";
-    dado.style.height = "32px";
-    dado.style.width = "32px";
-    dado.style.margin = "2px";
-    //dado.style.backgroundPosition = posiciones[0]+"px 0px";
+    let espacio3D = document.createElement("div");
+    espacio3D.className = "espacio3D";
+    contDado.appendChild(espacio3D);
 
-    document.body.appendChild(dado);
+    let cubo3D = document.createElement("div");
+    cubo3D.className = "cubo3D";
+    espacio3D.appendChild(cubo3D);
+
+    for(var i = 1; i <= 6; i++) {
+        var cara = document.createElement("aside");
+        cara.className = "cara cara"+i;
+        cubo3D.appendChild(cara);
+        cara.style.display = "flex";
+        cara.style.alignItems = "center";
+        cara.style.justifyContent = "center";
+
+        var canvas = document.createElement("canvas");
+        canvas.className = "dado"; 
+        canvas.id = "dado"+i;
+        canvas.style.width="450px"; 
+        canvas.style.height="270px";
+        cara.appendChild(canvas);
+    }
+    dibujar();
+}
+
+/* En esta función, con la variable posicion, se le establece un nº aleatorio del 1 al 6
+   y gracias a ello, podemos saber el nº de celdas posibles que pueda recorrer */
+function funcionDado(dado) {
+    var numAleatorio = Math.floor(Math.random()*6+1);
+    posicionDado(dado, numAleatorio);
+    funcionCeldasPosibles(document.getElementById("tabla"), numAleatorio);
 }
 
 /* Esta función ayuda a localizar las celdas posibles por recorrer desde la posición que se encuentre
@@ -92,28 +289,28 @@ function funcionCeldasPosibles(ev, posicion) {
     // En base a las variables F y C, cogemos las celdas posibles que se puedan recorrer después de la tirada
     // y las guardamos en el array celdasPosibles
     /*Izquierda*/
-    var izquierda = fila[F].getElementsByTagName("td")[C-(posicion+1)];
-    if (fila[F].getElementsByTagName("td")[C-(posicion+1)] != undefined) {
+    var izquierda = fila[F].getElementsByTagName("td")[C-posicion];
+    if (fila[F].getElementsByTagName("td")[C-posicion] != undefined) {
         izquierda.style.background = "green";
         cuadrosPosibles.push(izquierda);
     }
     /*Arriba*/
     let arriba;
-    if (fila[F-(posicion+1)] != undefined) {
-        arriba = fila[F-(posicion+1)].getElementsByTagName("td")[C];
+    if (fila[F-posicion] != undefined) {
+        arriba = fila[F-posicion].getElementsByTagName("td")[C];
         arriba.style.background = "green";
         cuadrosPosibles.push(arriba);
     }
     /*Derecha*/
-    var derecha = fila[F].getElementsByTagName("td")[C+(posicion+1)];
-    if (fila[F].getElementsByTagName("td")[C+(posicion+1)] != undefined) {
+    var derecha = fila[F].getElementsByTagName("td")[C+posicion];
+    if (fila[F].getElementsByTagName("td")[C+posicion] != undefined) {
         derecha.style.background = "green";
         cuadrosPosibles.push(derecha);
     }
     /*Abajo*/
     var abajo;
-    if (fila[F+(posicion+1)] != undefined) {
-        abajo = fila[F+(posicion+1)].getElementsByTagName("td")[C];
+    if (fila[F+posicion] != undefined) {
+        abajo = fila[F+posicion].getElementsByTagName("td")[C];
         abajo.style.background = "green";
         cuadrosPosibles.push(abajo);
     }
@@ -175,14 +372,6 @@ function funcionCeldasPosibles(ev, posicion) {
     console.log("Estás en la columna "+(C+1)+" de la fila "+(F+1));
 }
 
-/* En esta función, con la variable posicion, se le establece un nº aleatorio del 1 al 6
-   y gracias a ello, podemos saber el nº de celdas posibles que pueda recorrer */
-function funcionDado(ev) {
-    let posicion = Math.floor(Math.random() * 6);
-    posicionDado(ev.target, posicion);
-    funcionCeldasPosibles(ev, posicion);
-}
-
 /* En esta funcion se crea el carácter */
 function caracter(celda) {
     var caracter = document.createElement("div");
@@ -225,9 +414,7 @@ function crearBotonEmpezar() {
         crearDado();
         let dado = document.getElementById("dado");
         document.body.appendChild(dado);
-        let posicion = Math.floor(Math.random() * 6);
-        posicionDado(dado, posicion);
-        funcionCeldasPosibles(dado, posicion);
+        funcionDado(dado);
 
         // Al pulsar sobre el dado, se hace un evento onclick que establece una variable
         // de posición (nº aleatorio del 1 al 6)
@@ -236,7 +423,7 @@ function crearBotonEmpezar() {
                 alert("El dado ya está tirado");
             }
             else {
-                funcionDado(ev);
+                funcionDado(dado);
             }
         });
         document.getElementById("primeraCelda").style.background = "";
