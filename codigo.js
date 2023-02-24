@@ -333,6 +333,7 @@ function funcionCeldasPosibles(ev, posicion) {
                 document.getElementById("dado").remove();
                 botonReiniciar.addEventListener("click", (ev) =>  {
                     numTiradas = 0;
+                    $('#marcador').text("Tiradas: "+numTiradas);
                     eliminar();
                     caracter(document.getElementById("primeraCelda"));
                     crearBotonEmpezar();
@@ -356,6 +357,8 @@ function funcionCeldasPosibles(ev, posicion) {
             dadoTirado = false;
             // Se le añade 1 más al núm. de tiradas
             numTiradas++;
+
+            $('#marcador').text("Tiradas: "+numTiradas);
             console.log("Tiradas: "+numTiradas);
         }
     });
@@ -430,6 +433,11 @@ function inicio() {
     // botón para sacar primera tirada del dado
     botonInit.addEventListener("click", (ev) => {
         botonInit.remove();
+
+        let marcador = $('<p id="marcador"></p>');
+        marcador.text("Tiradas: "+numTiradas);
+        marcador.appendTo('body');
+        
 
         // Creamos tabla
         crearTabla();
