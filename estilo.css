@@ -3,6 +3,15 @@
     padding: 0;
 }
 
+#contInit * {
+    margin: 2%;
+    text-align: center;
+}
+
+#contInit button {
+    width: 35%;
+}
+
 table, .dado {
     margin: 2%;
 }

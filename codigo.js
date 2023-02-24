@@ -1,5 +1,8 @@
 'use strict';
 
+// Importamos función de autenticación
+import { autenticacion, registro, coincide } from "./Registro_Login.js";
+
 /* Declaración de variables globales para poder usarlos en diferentes funciones */
 
 // Variable booleana que nos servirá para saber si el dado está tirado o no
@@ -326,7 +329,7 @@ function funcionCeldasPosibles(ev, posicion) {
         if (ev.target.style.background == "green") {
             // Si la celda verde es la última celda, se termina la partida
             if (ev.target.id == "ultimaCelda") {
-                alert("FIN DE LA PARTIDA \nNº de tiradas realizadas: "+(numTiradas+1));
+                alert("FIN DE LA PARTIDA \nHéroe, has llegado al cofre en "+(numTiradas)+" tiradas");
                 let botonReiniciar = document.createElement("button");
                 botonReiniciar.appendChild(document.createTextNode("Reiniciar partida"));
                 document.body.appendChild(botonReiniciar);
@@ -355,11 +358,6 @@ function funcionCeldasPosibles(ev, posicion) {
             avanzarCelda(ev);
             // Establecemos dadoTirado a false para que siga tirando el dado
             dadoTirado = false;
-            // Se le añade 1 más al núm. de tiradas
-            numTiradas++;
-
-            $('#marcador').text("Tiradas: "+numTiradas);
-            console.log("Tiradas: "+numTiradas);
         }
     });
 }
@@ -403,6 +401,11 @@ function crearBotonEmpezar() {
     botonEmpezar.addEventListener("click", (ev) => {
         botonEmpezar.remove();
 
+        // Se le añade 1 más al núm. de tiradas
+        numTiradas++;
+        $('#marcador').text("Tiradas: "+numTiradas);
+        console.log("Tiradas: "+numTiradas);
+
         // Creamos dado, lo agregamos en la página y establecemos tirada
         crearDado();
         let dado = document.getElementById("dado");
@@ -416,6 +419,11 @@ function crearBotonEmpezar() {
                 alert("El dado ya está tirado");
             }
             else {
+                // Se le añade 1 más al núm. de tiradas
+                numTiradas++;
+                $('#marcador').text("Tiradas: "+numTiradas);
+                console.log("Tiradas: "+numTiradas);
+
                 funcionDado(dado);
             }
         });
@@ -424,30 +432,64 @@ function crearBotonEmpezar() {
 }
 
 function inicio() {
-    // Botón para iniciar juego
+    // Div contenedor para elementos input y botones
+    let contInit = $('<div id="contInit" style="display: flex; flex-direction: column; align-items: center; width: 20%;"></div>');
+    contInit.appendTo('body');
+
+    // Input para usuario
+    let usuario = $('<input/>', {
+        type: 'text',
+        placeholder: 'Usuario',
+        id: 'usuario'
+    });
+    usuario.appendTo(contInit);
+
+    // Input para contraseña
+    let passwd = $('<input/>', {
+        type: 'password',
+        placeholder: 'Contraseña',
+        id: 'passwd'
+    });
+    passwd.appendTo(contInit);
+
+
+    // Botón para iniciar sesión en el juego
     let botonInit = document.createElement("button");
-    botonInit.appendChild(document.createTextNode("Iniciar juego"));
-    document.body.appendChild(botonInit);
+    botonInit.appendChild(document.createTextNode("Iniciar sesión"));
+    document.getElementById("contInit").appendChild(botonInit);
+
+    // Botón para registrar el usuario
+    let botonReg = document.createElement("button");
+    botonReg.appendChild(document.createTextNode("Registrar"));
+    document.getElementById("contInit").appendChild(botonReg);
 
     // Al dar click al botón de iniciar juego, se crea la tabla, personaje y 
     // botón para sacar primera tirada del dado
     botonInit.addEventListener("click", (ev) => {
-        botonInit.remove();
+        autenticacion($('#usuario')[0].value, $('#passwd')[0].value);
 
-        let marcador = $('<p id="marcador"></p>');
-        marcador.text("Tiradas: "+numTiradas);
-        marcador.appendTo('body');
-        
+        if(coincide) {
+            contInit.remove();
 
-        // Creamos tabla
-        crearTabla();
+            let marcador = $('<p id="marcador"></p>');
+            marcador.text("Tiradas: "+numTiradas);
+            marcador.appendTo('body');
+            
+            // Creamos tabla
+            crearTabla();
 
-        // Caracter
-        caracter(document.getElementsByTagName("td")[0]);
+            // Caracter
+            caracter(document.getElementsByTagName("td")[0]);
 
-        // Botón para lanzar la primera tirada del dado y empezar la partida
-        crearBotonEmpezar();
-    })
+            // Botón para lanzar la primera tirada del dado y empezar la partida
+            crearBotonEmpezar();
+        }
+    });
+
+    // Evento para registrar el usuario
+    botonReg.addEventListener("click", (ev) => {
+        registro($('#usuario')[0].value, $('#passwd')[0].value);
+    });
 }
 
 window.onload = inicio;
