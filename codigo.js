@@ -1,7 +1,44 @@
 'use strict';
 
-// Importamos función de autenticación
-import { autenticacion, registro, coincide } from "./Registro_Login.js";
+// Importamos librerías de Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-analytics.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+
+import { firebaseConfig } from "./firebaseConfig.js";
+import { registro } from "./registro.js";
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+// Función de autenticación
+function autenticacion(usuario, passwd) {
+    const auth = getAuth(app);
+
+    signInWithEmailAndPassword(auth, usuario, passwd)
+    .then((user) => {
+        alert("Sesión iniciada correctamente");
+
+        contInit.remove();
+
+        let marcador = $('<p id="marcador"></p>');
+        marcador.text("Tiradas: "+numTiradas);
+        marcador.appendTo('body');
+        
+        // Creamos tabla
+        crearTabla();
+
+        // Caracter
+        caracter(document.getElementsByTagName("td")[0]);
+
+        // Botón para lanzar la primera tirada del dado y empezar la partida
+        crearBotonEmpezar();
+    })
+    .catch((err) => {
+        alert("Error al iniciar sesión: "+err);
+    });
+}
 
 /* Declaración de variables globales para poder usarlos en diferentes funciones */
 
@@ -467,23 +504,6 @@ function inicio() {
     // botón para sacar primera tirada del dado
     botonInit.addEventListener("click", (ev) => {
         autenticacion($('#usuario')[0].value, $('#passwd')[0].value);
-
-        if(coincide) {
-            contInit.remove();
-
-            let marcador = $('<p id="marcador"></p>');
-            marcador.text("Tiradas: "+numTiradas);
-            marcador.appendTo('body');
-            
-            // Creamos tabla
-            crearTabla();
-
-            // Caracter
-            caracter(document.getElementsByTagName("td")[0]);
-
-            // Botón para lanzar la primera tirada del dado y empezar la partida
-            crearBotonEmpezar();
-        }
     });
 
     // Evento para registrar el usuario
