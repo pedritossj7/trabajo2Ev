@@ -63,10 +63,6 @@ function crearTabla() {
         for (var j = 0; j < 10; j++) {
             let columna = document.createElement("td");
             columna.style.border = "1px solid";
-
-            columna.style.height = "50px";
-            columna.style.width = "50px";
-
             fila.appendChild(columna);
         }
 
@@ -316,7 +312,7 @@ function funcionCeldasPosibles(ev, posicion) {
         for (var j = 0; j < columnas.length; j++) {
             // Si x columna tiene nodos hijos (p. ej: el carácter), se ponen las coordenadas
             // de fila en la variable F y columna en la variable C
-            if (columnas[j].hasChildNodes()){
+            if (columnas[j].contains(document.getElementById("caracter"))){
                 F = i;
                 C = j;
                 break;
@@ -427,6 +423,7 @@ function crearBotonEmpezar() {
     var primeraCelda = tabla.getElementsByTagName("td")[0];
     primeraCelda.id = "primeraCelda";
     primeraCelda.style.background = "red";
+
     var ultimaCelda = tabla.getElementsByTagName("td")[tabla.getElementsByTagName("td").length - 1];
     ultimaCelda.id = "ultimaCelda";
     ultimaCelda.style.background = "blue";
